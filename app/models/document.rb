@@ -34,18 +34,22 @@ class Document < ApplicationRecord
 	end
 
 	def sort_by
+		logger.info("Sorting document ...")
 		puts "sort_by method called"
 	end
 
 	def rmv_duplicate
+		logger.info("Removing duplicates ...")
 		puts "rmv method called"
 	end
 
 	def word_count
+		logger.info("Counting words ...")
 		puts "word_count method called"
 	end
 
 	def customize
+		logger.info("Running custom query ...")
 		puts "customize method called"
 	end
 

@@ -1,5 +1,4 @@
 module DocumentsHelper
-
   # array_of_lines = []
 
   #import the file as an array
@@ -16,5 +15,17 @@ module DocumentsHelper
   # array_of_lines.uniq!(&:first)
   # array_of_lines.each { |line| p line }
   # end
+
+  def select_service(service, document)
+    # Just one more option you have for handling the form data.
+    # Example of how you can handle the various "services". See
+    # changes in application.html.erb for greater context!
+    services = {
+        "word_count": document.word_count,
+        "rm_duplicate": document.rm_duplicate,
+        "sort": document.sort
+    }
+    services[service]
+  end
 
 end

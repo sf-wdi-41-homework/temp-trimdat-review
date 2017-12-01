@@ -27,5 +27,8 @@ module Trimdat
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    
+    # Logging: http://guides.rubyonrails.org/debugging_rails_applications.html#the-logger
+    config.logger = Logger.new(STDOUT)
   end
 end

@@ -31,10 +31,17 @@ class DocumentsController < ApplicationController
 
   # POST /documents
   def create
-    @document = Document.new(document_params)
+    # User Document.create or else you need to Document.save
+    @document = Document.create(document_params)
+    service_type = params[:service]
+    # Do you  have to be logged in to create a document? If so, no need to check
+    # current user here. It's checked by your sessions.
     if current_user.documents.push @document
+      # see config/application.rb to learn about the log configuration!
+      logger.info("Document #{@document.id} saved to user #{current_user.id}")
       redirect_to user_path(current_user)
     else
+      logger.debug("Uh oh ....something went wrong.")
       puts "OH NOOOOOOOO!!!"
     end
   end
@@ -76,11 +83,12 @@ class DocumentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_document
+      # Nice work!
       @document = Document.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
-      params.require(:document).permit(:file, :sort_by, :rmv_duplicate, :word_count, :customize)
+      params.require(:document).permit(:service, :file, :sort_by, :rmv_duplicate, :word_count, :customize)
     end
 end

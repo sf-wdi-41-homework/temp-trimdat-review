@@ -171,7 +171,7 @@
             <%= f.file_field :file %>
             </div>
 
-            <select class="selectpicker requestBox" id="serviceSelector">
+            <select name="service" class="selectpicker requestBox" id="serviceSelector">
               <optgroup label="Free service">
                 <option value="sort">Sort</option>
                 <option value="rmDouble">Remove Duplicate</option>
@@ -196,12 +196,12 @@
                       $("#serviceInputForm").html(`<% f.text_field :rmv_duplicate, value: "1" %>`)
                       break;
                   case "Word Count":
-                      str = `<%= f.text_field :word_count, placeholder: "Type in your word" %>`
+                      str = `<%= f.text_field :custom, placeholder: "Type in your word" %>`
                       break;
                   case "Customize":
                       str = `
                       <%= f.label "Please describe your need" %>
-                      <%= f.text_area :customize, placeholder: "..." %>`
+                      <%= f.text_area :custom, placeholder: "..." %>`
                       break;
                   // default:
                   //     break;
